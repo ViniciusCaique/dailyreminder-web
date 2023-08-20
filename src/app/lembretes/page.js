@@ -3,12 +3,12 @@
 import NavBar from '@/components/NavBar'
 
 
-export default function Home() {
+export default function Lembrete() {
   return (
     <>
-      <NavBar />
+      <NavBar active={"lembretes"}/>
       <main>
-        <h1>Home</h1>
+        <h1>Lembretes</h1>
       </main>
     </>
   )

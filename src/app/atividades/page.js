@@ -3,12 +3,12 @@
 import NavBar from '@/components/NavBar'
 
 
-export default function Home() {
+export default function Atividade() {
   return (
     <>
-      <NavBar />
+      <NavBar active={"atividades"}/>
       <main>
-        <h1>Home</h1>
+        <h1>Atividades</h1>
       </main>
     </>
   )
