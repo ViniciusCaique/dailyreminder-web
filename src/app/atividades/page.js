@@ -2,7 +2,11 @@
 
 import NavBar from '@/components/NavBar'
 
+import SearchBar from "@/components/SearchBar";
+
+
 import Atividade from './Atividade'
+import { Button } from '@/components/Button';
 
 async function getAtividades() {
   const url = 'http://localhost:8080/api/atividades'
@@ -54,11 +58,18 @@ export default async function Atividades() {
     <>
       <NavBar active={"atividades"}/>
 
-      <main className="bg-stone-900 mt-10 m-auto max-w-lg p-8 rounded">
+      <main className="bg-stone-900 mt-10 m-auto max-w-screen-lg p-8 rounded">
         <h1 className="text-2xl font-bold">Atividades</h1>
 
-        {/* dark:bg-gray-700 bg-gray-100*/}
-        <hr class="w-auto h-1 mx-auto my-4  border-0 rounded md:my-10 bg-zinc-200"  />
+        <div className="flex justify-between items-end gap-6 ">
+          <SearchBar />
+          <Button href="/atividades/new">
+              New
+          </Button>
+        </div>
+
+        
+        <hr class="w-auto h-1 mx-auto my-2 border-0 rounded bg-zinc-200" />
 
         <div id="data">
           {data.map(atividade => <Atividade key={atividade.id} atividade={atividade} />)}
