@@ -2,10 +2,9 @@
 
 import { revalidatePath } from "next/cache"
 
-export async function create(formData) {
+const url = process.env.NEXT_PUBLIC_BASE_URL + "/atividades"
 
-    
-    const url = "http://localhost:8080/api/atividades"
+export async function create(formData) {
 
     const options = {
         method: "POST",
@@ -28,4 +27,12 @@ export async function create(formData) {
 
     revalidatePath("/atividades")
     return{ ok: 'ok' }
+}
+
+export async function getAtividades() {
+    const res = await fetch(url, { next: { revalidate: 0 }})
+    if(!res.ok) {
+        throw new Error('Erro ao obter dados das atividades')
+    }
+    return res.json()
 }

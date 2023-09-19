@@ -7,12 +7,9 @@ import SearchBar from "@/components/SearchBar";
 
 import Atividade from './Atividade'
 import { Button } from '@/components/Button';
+import { getAtividades } from '@/actions/atividades';
 
-async function getAtividades() {
-  const url = 'http://localhost:8080/api/atividades'
-  const res = await fetch(url, { next: { revalidate: 0 }})
-  return res.json()
-}
+
 
 
 export default async function Atividades() {
