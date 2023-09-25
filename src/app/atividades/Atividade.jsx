@@ -14,7 +14,7 @@ export default function Atividade({ atividade }){
                 {!atividade.lembrete?.mensagem ? null : <span>{atividade.lembrete.mensagem}</span>}
                 <span>{atividade.dataDia}</span>
                 <div className="invisible group-hover:visible">
-                    <DropMenu />
+                    <DropMenu atividade={atividade} />
                 </div>
             </div>
         </div>
