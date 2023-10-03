@@ -1,6 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
+import { cookies } from "next/headers"
 
 const url = process.env.NEXT_PUBLIC_BASE_URL + "/atividades"
 
@@ -30,8 +31,17 @@ export async function create(formData) {
 }
 
 export async function getAtividades() {
-    await new Promise(r => setInterval(r, 5000));
-    const res = await fetch(url, { next: { revalidate: 0 }})
+
+    const token = cookies().get('dailyToken')
+
+    const options = {
+        headers: {
+            "Authorization": `Bearer ${token.value}`
+        }
+    }
+
+
+    const res = await fetch(url, options)
     if(!res.ok) {
         throw new Error('Erro ao obter dados das atividades')
     }
@@ -56,7 +66,7 @@ export async function updateAtividade(atividade) {
     const options = {
         method: "POST",
         // body: JSON.stringify(data),
-        body: JSON.stringify( Object.fromEntries(formData)),
+        body: JSON.stringify(atividade),
         headers: {
             "Content-Type": "application/json"
         }
